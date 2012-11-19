@@ -7,6 +7,7 @@
 
 include("Credentials.class.php");
 include("PasswordRecover.class.php");
+include("TradeHistory.class.php");
 
 //this is the object format that the client expects from getTokenFromCredentials
 //what else might the client want to know?
@@ -70,10 +71,10 @@ if (!isset($_POST["jsondata"])) {
                                     $msg->statusdesc = "Error!";
                                 }
                                 break;
-                        case "getTokenFromTradeHistory":                      
-                        	$history = new TradeHistory(                       
-                        		$req->history->userID,                 
-                        	);                                            
+                        case "getTradeHistoryFromToken":                      
+                        	$userID = sp_getUserIdFromToken($token);
+                        	$history = new TradeHistory($userID);                      
+                                                                   
                         	$history->mysql_query("CALL getTradeHistory(userID)")
 					or die('Could not locate trade history: ' .mysql_error());
 
