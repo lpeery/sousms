@@ -32,6 +32,22 @@ end;
 //
 delimiter;
 
+/*
+this procedure must:
+1. Query the db to see if username/email exists
+2. If yes then compare password with password in db
+3. Return true or false
+*/
+drop procedure if exists checkEmailPassword;
+delimter//
+create procedure checkEmailPassword(
+	IN email varchar(40)
+	IN password varchar(40)
+	OUT success boolean
+	)
+begin
+	IF 
+
 
 /*
 This procedure must:
